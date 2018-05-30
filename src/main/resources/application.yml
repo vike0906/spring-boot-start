@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: vike0906
+  profiles:
+    active: dev
+
+#登录token过期时间(S)
+token:
+  expireTime: 86400

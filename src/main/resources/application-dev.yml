@@ -1,0 +1,49 @@
+online: false
+logging:
+  config: classpath:logback.xml
+
+# 服务端口
+server:
+  port: 9060
+
+# spring
+spring:
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.92.77.82:3306/follow8?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&transformedBitIsBoolean=true&zeroDateTimeBehavior=convertToNull&serverTimezone=PRC&useSSL=false
+    username: root
+    password: wQt620
+    maxActive: 200
+    filters: stat,wall
+
+  redis:
+      host: 47.92.118.152
+      database: 0
+      port: 6379
+      password: Wqt_scim_2017
+      pool:
+        max-idle: 50
+        max-active: 200
+        max-wait: 1000
+  jpa:
+        database: mysql
+        show-sql: true
+        hibernate:
+          ddl-auto: update
+          naming:
+            strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+        properties:
+           hibernate:
+              dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+
+
+
+
+
+
+
+

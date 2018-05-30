@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="${trade.home}/logs" />
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出,%d:日期;%thread:线程名;%-5level：级别,从左显示5个字符宽度;%msg:日志消息;%n:换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 按照每天生成日志文件 -->
+    <appender name="PROJECT"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/api.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/api-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 单个文件大小-->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- 保留30天-->
+            <maxHistory>30</maxHistory>
+            <!--所有的日志压缩文件的大小-->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出,%d:日期;%thread:线程名;%-5level：级别,从左显示5个字符宽度;%msg:日志消息;%n:换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SQL"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/api-sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/api-sql%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 单个文件大小-->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- 保留30天-->
+            <maxHistory>30</maxHistory>
+            <!--所有的日志压缩文件的大小-->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出,%d:日期;%thread:线程名;%-5level：级别,从左显示5个字符宽度;%msg:日志消息;%n:换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder"
+            level="ERROR" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor"
+            level="ERROR" />
+
+
+
+    <!-- 上传日志文件时会打印很多wire的日志-->
+    <logger name="org.apache.http.wire" level="ERROR" />
+
+
+    <!-- 第三方库的日志只显示错误，否则太多了-->
+    <!--swagger文档接口-->
+
+    <logger name="springfox.documentation" level="ERROR" />
+    <!--HikariCP连接池的日志-->
+    <logger name="com.zaxxer.hikari" level="WARN" />
+    <!--Spring的日志 -->
+    <logger name="org.springframework" level="WARN" />
+    <!--Shiro安全框架的日志-->
+    <logger name="org.apache.shiro" level="WARN" />
+    <logger name="org.apache.commons.httpclient.util" level="WARN" />
+    <logger name="org.quartz.core.QuartzSchedulerThread" level="WARN" />
+    <logger name="org.hibernate" level="WARN" />
+
+    <!-- 日志输出级别 -->
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!--<root level="INFO">-->
+        <!--<appender-ref ref="PROJECT"/>-->
+    <!--</root>-->
+</configuration>
