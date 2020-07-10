@@ -31,7 +31,7 @@
 		<mybatis.spring-boot.version>1.2.1</mybatis.spring-boot.version>
 		<spring-boot.redis.version>1.4.1.RELEASE</spring-boot.redis.version>
 		<druid.version>1.0.29</druid.version>
-		<shiro.version>1.4.0</shiro.version>
+		<shiro.version>1.4.2</shiro.version>
 		<common-httpclient.version>3.1</common-httpclient.version>
 		<mysql-connector.version>8.0.16</mysql-connector.version>
 		<swagger2.version>2.6.1</swagger2.version>
